@@ -38,5 +38,5 @@ android {
 
 dependencies {
     implementation project(':FtcRobotController')
-    implementation project(':GeneralUtilities')
+    implementation 'com.github.FIRST-4030.GeneralUtilities:GeneralUtilities:v1.0.0'
 }
