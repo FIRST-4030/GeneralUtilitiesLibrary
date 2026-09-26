@@ -1,4 +1,8 @@
 // Standalone reusable FTC Android library.
+plugins {
+    id 'maven-publish'
+}
+
 apply plugin: 'com.android.library'
 
 android {
