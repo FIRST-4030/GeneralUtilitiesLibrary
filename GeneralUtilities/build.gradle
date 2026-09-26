@@ -57,7 +57,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.FIRST-4030'
                 artifactId = 'GeneralUtilitiesLibrary'
-                version = '1.0.2'
+                version = '1.0.3'
             }
         }
     }
