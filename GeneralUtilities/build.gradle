@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'com.android.library'
 
 android {
-    namespace = 'org.firstinspires.ftc.teamcode'
+    namespace = 'org.firstinspires.ftc.generalUtilities'
     compileSdkVersion 34
 
     defaultConfig {
@@ -57,7 +57,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.FIRST-4030'
                 artifactId = 'GeneralUtilitiesLibrary'
-                version = '1.0.0'
+                version = '1.0.2'
             }
         }
     }
