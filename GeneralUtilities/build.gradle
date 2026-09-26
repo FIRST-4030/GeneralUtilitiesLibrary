@@ -23,10 +23,18 @@ android {
     buildFeatures {
         buildConfig = false
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
     google()
 }
 
@@ -40,4 +48,17 @@ dependencies {
     implementation 'org.firstinspires.ftc:FtcCommon:11.0.0'
     implementation 'org.firstinspires.ftc:Vision:11.0.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
- }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.FIRST-4030'
+                artifactId = 'GeneralUtilitiesLibrary'
+                version = '1.0.0'
+            }
+        }
+    }
+}
