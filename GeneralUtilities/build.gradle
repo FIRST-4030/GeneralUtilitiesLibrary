@@ -39,15 +39,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.firstinspires.ftc:Inspection:11.0.0'
-    implementation 'org.firstinspires.ftc:Blocks:11.0.0'
-    implementation 'org.firstinspires.ftc:RobotCore:11.0.0'
-    implementation 'org.firstinspires.ftc:RobotServer:11.0.0'
-    implementation 'org.firstinspires.ftc:OnBotJava:11.0.0'
-    implementation 'org.firstinspires.ftc:Hardware:11.0.0'
-    implementation 'org.firstinspires.ftc:FtcCommon:11.0.0'
-    implementation 'org.firstinspires.ftc:Vision:11.0.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    api 'org.firstinspires.ftc:Inspection:11.0.0'
+    api 'org.firstinspires.ftc:Blocks:11.0.0'
+    api 'org.firstinspires.ftc:RobotCore:11.0.0'
+    api 'org.firstinspires.ftc:RobotServer:11.0.0'
+    api 'org.firstinspires.ftc:OnBotJava:11.0.0'
+    api 'org.firstinspires.ftc:Hardware:11.0.0'
+    api 'org.firstinspires.ftc:FtcCommon:11.0.0'
+    api 'org.firstinspires.ftc:Vision:11.0.0'
+    api 'androidx.appcompat:appcompat:1.2.0'
 }
 
 afterEvaluate {
