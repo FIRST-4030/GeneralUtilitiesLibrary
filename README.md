@@ -10,7 +10,7 @@ repositories {
 }
 ```
 
-...and then add the implementation for the GeneralUtilities library to the dependencies in the same file, making sure to specify the version number:
+...and then add the implementation for the GeneralUtilities library to the dependencies in build.gradle (TeamCode module), making sure to specify the version number:
 
 ```groovy
 dependencies {  
