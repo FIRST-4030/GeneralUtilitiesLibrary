@@ -40,7 +40,7 @@ repositories {
 }
 ```
 
-...and make sure *this* block is present in build.gradle (GeneralUtiliesLibrary project):
+...and make sure *this* block is present in build.gradle (GeneralUtilitiesLibrary project):
 
 ```groovy
 allprojects {  
@@ -54,7 +54,7 @@ allprojects {
 
 ## Changing the `implementation` Lines to `api` Lines
 
-Edit the dependencies block in build.gradle (the GeneralUtilies module specifically).
+Edit the dependencies block in build.gradle (the GeneralUtilities module specifically).
 
 Before:
 
