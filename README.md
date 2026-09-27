@@ -1,57 +1,121 @@
-## TeamCode Module
+# Adding the GeneralUtilities Library to a Project
 
-This module contains a group of generic utilities that span all years.
-<p>
-This repository aso contains code snippets that can be copied and
-pasted into future projects to help expedite the creation of a project
-at the beginning od a school year</p>
+In BOTH the build.gradle (for the TeamCode module *specifically*) file AND the build.dependencies.gradle file, add this block:
 
-## Blackboard
-This set of classes show how to transfer information between an autonomous 
-and teleop opmodes. Classes include,
-<ul>
-<li><i>Blackboard</i> - common class used to store data to be shared</li>
-</ul>
+```groovy
+repositories {  
+    mavenCentral()  
+    maven { url 'https://jitpack.io' }  
+    google() // Needed for androidx  
+}
+```
 
-## LimeLight
+...and then add the implementation for the GeneralUtilities library to the dependencies in the same file, making sure to specify the version number:
 
-## New Year
-### Chassis
-This class enforces the creation of a common set of drive motors and their
-associated properties. Methods include,
-<ul>
-<li><i>drive</i> - takes the inputs from the joysticks to move the robot around</li>
-<li><i>setSpeed</i> - changes the maximum speed tha the motors can run. Reduce this 
-value when setting up for an outreach event.</li>
-<li><i>setPower</i> - sets the maximum power of all motors</li>
-</ul>
+```groovy
+dependencies {  
+    implementation project(':FtcRobotController')  
+  
+    // Specify which version of the library you're using here
+    implementation 'com.github.FIRST-4030:GeneralUtilitiesLibrary:1.0.6'  
+}
+```
 
-## Utilities
-### Gamepad_F310_Buttons
+That should be it!
 
-### ServoTester
-This opmode allows you the ability to set a starting point for a servo 
-and then increment its movement up/down by 5%. Merely, change the 
-name of the servo (<b>DEVICE_NAME</b>) at the top of the file before beginning
+# Configuring the GeneralUtilities Library Project so that JitPack Worked
 
-### WheelTest
-This opmode will drive each individual wheel forward for 2 seconds and then 
-in reverse for 2 seconds. This is a great tool to ensure that you have wired up
-the motors to the proper pors on the ControlHub.
+There are a lot of things you seem to have to do before JitPack will play nice with a custom li, but it doesn't take very long. You don't need to
+read this section to use the GeneralUtilies library in a project.
 
-### Datalogger 
-Datalogger class. Most users will not need to edit this class; its methods are called 
-from a user's OpMode.  For instructions, see the tutorial at the FTC Wiki:
-https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki/Datalogging
+## Add Jitpack.io to the `repositories` Block in both build.gradle Files
 
-### PID controller
-Proportional, Integral, Derivative Controller Class
+Make sure this block is present in build.gradle (GeneralUtilities module):
 
-### Piecewise curves
-PiecewiseFunction class provides a piecewise math function connecting the dots between an arbitrary number of points. 
-Various options include support for step functions, the ability to chose between high and low defaults, and limiting of inputs.
+```groovy
+repositories {  
+    mavenCentral()  
+    maven { url "https://jitpack.io" }  
+    google()  
+}
+```
 
-### Running Average
-Running Average Class. Uses a fixed-size queue (circular buffer) to store the last n numbers.
-When a new number is added and the queue is full, the oldest number is removed.
-This way, you always maintain the last n numbers for your average calculation.
+...and make sure *this* block is present in build.gradle (GeneralUtiliesLibrary project):
+
+```groovy
+allprojects {  
+    repositories {  
+        mavenCentral()  
+        maven { url "https://jitpack.io" }  
+        google()  
+    }  
+}
+```
+
+## Changing the `implementation` Lines to `api` Lines
+
+Edit the dependencies block in build.gradle (the GeneralUtilies module specifically).
+
+Before:
+
+```groovy
+dependencies {  
+    implementation 'org.firstinspires.ftc:Inspection:11.0.0'  
+    implementation 'org.firstinspires.ftc:Blocks:11.0.0'  
+    implementation 'org.firstinspires.ftc:RobotCore:11.0.0'  
+    implementation 'org.firstinspires.ftc:RobotServer:11.0.0'  
+    implementation 'org.firstinspires.ftc:OnBotJava:11.0.0'  
+    implementation 'org.firstinspires.ftc:Hardware:11.0.0'  
+    implementation 'org.firstinspires.ftc:FtcCommon:11.0.0'  
+    implementation 'org.firstinspires.ftc:Vision:11.0.0'  
+    implementation 'androidx.appcompat:appcompat:1.2.0'  
+}
+```
+
+After:
+
+```groovy
+dependencies {  
+    api 'org.firstinspires.ftc:Inspection:11.0.0'  
+    api 'org.firstinspires.ftc:Blocks:11.0.0'  
+    api 'org.firstinspires.ftc:RobotCore:11.0.0'  
+    api 'org.firstinspires.ftc:RobotServer:11.0.0'  
+    api 'org.firstinspires.ftc:OnBotJava:11.0.0'  
+    api 'org.firstinspires.ftc:Hardware:11.0.0'  
+    api 'org.firstinspires.ftc:FtcCommon:11.0.0'  
+    api 'org.firstinspires.ftc:Vision:11.0.0'  
+    api 'androidx.appcompat:appcompat:1.2.0'  
+}
+```
+
+## Adding the `afterEvaluate` Block
+
+In the same file as above (build.gradle in the GeneralUtilities module), add this block at the bottom of the file:
+
+```groovy
+afterEvaluate {  
+    publishing {  
+        publications {  
+            release(MavenPublication) {  
+                from components.release  
+                groupId = 'com.github.FIRST-4030'  
+                artifactId = 'GeneralUtilitiesLibrary'  
+                version = '1.0.6' // This should match the tag version
+            }  
+        }
+    }
+}
+```
+
+## Finally: Creating a Git Tag for the Project Version
+
+This final step lets us tag a specific version of the library to use in our project.
+
+1. Pick a version number you're going to use for this version, and make sure to use that number in the afterEvaluate block (see above).
+2. Commit all your changes in the library.
+3. Run this command in the terminal: `git tag -a v{Your version number here} -m "Release version {Your version number here}"`
+4. Push to GitHub in Android Studio, making sure to enable the "Push Tags" option at the bottom left of the popup.
+
+Should be all set after that. Use that version number you picked when you use the library in a project.
+
+---
