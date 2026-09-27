@@ -26,7 +26,7 @@ That should be it!
 # Configuring the GeneralUtilities Library Project so that JitPack Worked
 
 There are a lot of things you seem to have to do before JitPack will play nice with a custom library, but it doesn't take very long. You don't need to
-read this section to use the GeneralUtilies library in a project.
+read this section to use the GeneralUtilities library in a project.
 
 ## Add Jitpack.io to the `repositories` Block in both build.gradle Files
 
