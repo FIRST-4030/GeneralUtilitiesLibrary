@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.generalUtilities;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**

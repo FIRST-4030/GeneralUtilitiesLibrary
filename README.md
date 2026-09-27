@@ -1,6 +1,6 @@
-# Adding the GeneralUtilities Library to a Project
+# How to add the GeneralUtilitiesLibrary to a Project
 
-In BOTH the build.gradle (for the TeamCode module *specifically*) file AND the build.dependencies.gradle file, add this block:
+In BOTH the build.gradle (for the TeamCode module *specifically*) file AND the build.dependencies.gradle file, make sure this code is present in the `repositories` block:
 
 ```groovy
 repositories {  
@@ -13,7 +13,7 @@ repositories {
 }
 ```
 
-...and then add the implementation for the GeneralUtilities library to the dependencies in build.gradle (TeamCode module), making sure to specify the version number:
+...and then add the implementation for the GeneralUtilities library to the `dependencies` block in build.gradle (TeamCode module), making sure to specify the version number:
 
 ```groovy
 dependencies {  
@@ -28,20 +28,22 @@ dependencies {
 
 That should be it!
 
-# Configuring the GeneralUtilities Library Project so that JitPack Worked
+# Configuring the GeneralUtilitiesLibrary Project to Publish to JitPack properly
 
-There are a lot of things you seem to have to do before JitPack will play nice with a custom library, but it doesn't take very long. You don't need to
-read this section to use the GeneralUtilities library in a project.
+There are a lot of things you seem to have to do before JitPack will play nice with a custom library, but it doesn't take very long. This section could be a pretty good reference if we want to make another library. 
 
-## Add Jitpack.io to the `repositories` Block in both build.gradle Files
+## Add JitPack.io to the `repositories` Block in both build.gradle Files
 
 Make sure this block is present in build.gradle (GeneralUtilities module):
 
 ```groovy
-repositories {  
+repositories { 
+    ...
+    
     mavenCentral()  
     maven { url "https://jitpack.io" }  
-    google()  
+    
+    ...
 }
 ```
 
@@ -50,18 +52,21 @@ repositories {
 ```groovy
 allprojects {  
     repositories {  
+        ...
+        
         mavenCentral()  
         maven { url "https://jitpack.io" }  
-        google()  
+        
+        ...
     }  
 }
 ```
 
 ## Adding the `maven-publish` Plugin to Gradle
 
-Maven-publish is what allows the library to be built and hosted on JitPack. Without it JitPack will fail to build the project completely.
+Maven-publish is what allows the library to be built and hosted on JitPack. Without it JitPack will fail to build the project, and Android Studio won't be able to download the library and use it as a dependency.
 
-Make sure this block is present in build.gradle (GeneralUtilities module):
+Put this block at the top of build.gradle (specifically the GeneralUtilities module):
 
 ```groovy
 plugins {
