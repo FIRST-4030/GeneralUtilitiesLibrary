@@ -52,9 +52,23 @@ allprojects {
 }
 ```
 
+## Adding the `maven-publish` Plugin to Gradle
+
+Maven-publish is what allows the library to be built and hosted on JitPack. Without it JitPack will fail to build the project completely.
+
+Make sure this block is present in build.gradle (GeneralUtilities module):
+
+```groovy
+plugins {
+    id 'maven-publish'
+}
+```
+
 ## Changing the `implementation` Lines to `api` Lines
 
 Edit the dependencies block in build.gradle (the GeneralUtilities module specifically).
+
+Changing these lines to api seems to give better autocomplete for me.
 
 Before:
 
