@@ -4,9 +4,12 @@ In BOTH the build.gradle (for the TeamCode module *specifically*) file AND the b
 
 ```groovy
 repositories {  
+    ...
+    
     mavenCentral()  
     maven { url 'https://jitpack.io' }  
-    google() // Needed for androidx  
+    
+    ...
 }
 ```
 
@@ -14,10 +17,12 @@ repositories {
 
 ```groovy
 dependencies {  
-    implementation project(':FtcRobotController')  
+    ...
   
     // Specify which version of the library you're using here
     implementation 'com.github.FIRST-4030:GeneralUtilitiesLibrary:1.0.6'  
+    
+    ...
 }
 ```
 
