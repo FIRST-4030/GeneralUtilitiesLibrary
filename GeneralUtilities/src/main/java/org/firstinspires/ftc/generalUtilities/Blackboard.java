@@ -16,7 +16,7 @@ public class Blackboard {
 
     public static Alliance getAlliance() {
         return alliance;
-    };
+    }
 
     public static void setAlliance(Alliance alliance) {
         Blackboard.alliance = alliance;
