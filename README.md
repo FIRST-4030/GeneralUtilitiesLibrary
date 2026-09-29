@@ -13,7 +13,7 @@ repositories {
 }
 ```
 
-...and then add the implementation for the GeneralUtilities library to the `dependencies` block in build.gradle (TeamCode module), making sure to specify the version number:
+...and then add the implementation line for the GeneralUtilitiesLibrary to the `dependencies` block in build.gradle (in the TeamCode module), making sure to specify the version number:
 
 ```groovy
 dependencies {  
@@ -26,7 +26,7 @@ dependencies {
 }
 ```
 
-That should be it!
+That should be it! Now you can use the classes provided by GeneralUtilitesLibrary in your opmodes.
 
 # Configuring the GeneralUtilitiesLibrary Project to Publish to JitPack properly
 
