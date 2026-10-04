@@ -26,7 +26,7 @@ dependencies {
 }
 ```
 
-That should be it! Now you can use the classes provided by GeneralUtilitesLibrary in your opmodes.
+That should be it! Now you can use the classes provided by GeneralUtilitiesLibrary in your opmodes.
 
 # Configuring the GeneralUtilitiesLibrary Project to Publish to JitPack properly
 

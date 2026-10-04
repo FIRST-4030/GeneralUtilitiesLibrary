@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.generalUtilities;
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -14,7 +16,9 @@ public class Blackboard {
     }
     private static Alliance alliance = Alliance.UNKNOWN;
 
+    @NonNull
     public static Alliance getAlliance() {
+        if (alliance == null) return Alliance.UNKNOWN;
         return alliance;
     }
 
