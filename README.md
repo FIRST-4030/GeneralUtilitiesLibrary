@@ -28,7 +28,32 @@ dependencies {
 
 That should be it! Now you can use the classes provided by GeneralUtilitiesLibrary in your opmodes.
 
-# Configuring the GeneralUtilitiesLibrary Project to Publish to JitPack properly
+# How to update GeneralUtilities and make a new release version!
+
+1. Pick a version number you're going to use for this version, and make sure to use that number in the afterEvaluate block in build.gradle (GeneralUtilities module):
+```groovy
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.FIRST-4030'
+                artifactId = 'GeneralUtilitiesLibrary'
+                version = '{YOUR VERSION NUMBER HERE! Ex: v.1.0.7}'
+            }
+        }
+    }
+}
+```
+2. Commit all your changes in the library.
+3. Run this command in the terminal:
+```bash
+$ git tag -a v{Your version number here} -m "Release version {Your version number here}"
+```
+4. Push to GitHub in Android Studio, making sure to enable the "Push Tags" option at the bottom left of the popup.
+5. Now you can update your version of GeneralUtilities wherever you are using it and get your new changes!
+
+# Reference: how this library was configured to publish to JitPack properly
 
 There are a lot of things you seem to have to do before JitPack will play nice with a custom library, but it doesn't take very long. This section could be a pretty good reference if we want to make another library. 
 
